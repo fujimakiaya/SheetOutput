@@ -5,7 +5,7 @@
 //6.解雇理由証明書
 //7.資格証明書
 
-(async function() {
+(function() {
     
     "use strict";
     
@@ -79,10 +79,11 @@
         let element1 = document.getElementsByClassName("kv-element-has-value");
     
         //array3に入れる
-        for(var j=0; j<element1.length; j++){
-            var found = false;
-            var elementText = element1[j].firstElementChild.innerText;
-            for(var i=0; i<array1.length; i++){
+        for(let j=0; j<element1.length; j++){
+            let i;
+            let found = false;
+            let elementText = element1[j].firstElementChild.innerText;
+            for(i=0; i<array1.length; i++){
                 if(elementText == array1[i]){
                     array3[i] = element1[j].lastElementChild.innerText;
                     found = true;
@@ -101,15 +102,27 @@
      //   console.log(array3);
 
         //配列を文字列に変更
-        var array2_string = array2.join(',');
-        var array3_string = array3.join(',');
+        let array2_string = array2.join(',');
+        let array3_string = array3.join(',');
 
         //decodedDataに配列を渡す
         //2024.03.25修正藤巻
         decodedData = decodedData.replace('// JavaScriptコード', `str1 = "${array2_string}"; str2 = "${array3_string}"; const employeeId = ${employeeId}; const sei = "${sei}"; const mei = "${mei}"; const cer_number1 = "${cer_number1}";`);
 
-         window.document.write(decodedData);
+        sessionStorage.setItem('str1_jirei', array2_string);
+        sessionStorage.setItem('str2_jirei', array3_string);
+        sessionStorage.setItem('cer_number1', cer_number1);
+
+        window.document.getElementsByTagName('html')[0].innerHTML = decodedData;
+        let src_value = document.getElementsByTagName('script')[0].src;
+
+         let scriptElement = document.createElement('script');
+         scriptElement.src = src_value;
+         document.getElementsByTagName('html')[0].appendChild(scriptElement);
+
          window.focus();
+         
+         window.oncontextmenu = function () {return false;}
     } 
 
     function zaisyoku(){
@@ -141,10 +154,11 @@
         let element1 = document.getElementsByClassName("kv-element-has-value");
     
         //array3に入れる
-        for(var j=0; j<element1.length; j++){
-            var found = false;
-            var elementText = element1[j].firstElementChild.innerText;
-            for(var i=0; i<array1.length; i++){
+        for(let j=0; j<element1.length; j++){
+            let i;
+            let found = false;
+            let elementText = element1[j].firstElementChild.innerText;
+            for(let i=0; i<array1.length; i++){
                 if(elementText == array1[i]){
                     array3[i] = element1[j].lastElementChild.innerText;
                     found = true;
@@ -163,24 +177,36 @@
         // console.log(array3);
         
         //配列を文字列に変更
-        var array2_string = array2.join(',');
-        var array3_string = array3.join(',');
+        let array2_string = array2.join(',');
+        let array3_string = array3.join(',');
 
         //decodedDataに配列を渡す
         //2024.03.25修正藤巻
         decodedData = decodedData.replace('// JavaScriptコード', `str1 = "${array2_string}"; str2 = "${array3_string}"; const employeeId = ${employeeId}; const sei = "${sei}"; const mei = "${mei}"; const cer_number1 = "${cer_number1}";`);
 
-        window.document.write(decodedData);
-        window.focus();
+        sessionStorage.setItem('str1_zaisyoku', array2_string);
+        sessionStorage.setItem('str2_zaisyoku', array3_string);
+        sessionStorage.setItem('cer_number1', cer_number1);
+
+        window.document.getElementsByTagName('html')[0].innerHTML = decodedData;
+        let src_value = document.getElementsByTagName('script')[0].src;
+
+         let scriptElement = document.createElement('script');
+         scriptElement.src = src_value;
+         document.getElementsByTagName('html')[0].appendChild(scriptElement);
+
+         window.focus();
+         
+         window.oncontextmenu = function () {return false;}
     } 
 
     function meibo(){
-        var decodedData = template_array[4];
+        let decodedData = template_array[4];
 
         //console.log(decodedData);
         
-        var array = [];
-        var array3 = [];
+        let array = [];
+        let array3 = [];
 
         array.push(['社員No', '%g2%']);
         array.push(['労働者セイ_労働者名簿', '%g3%']);
@@ -234,19 +260,20 @@
 
         const transposedArray = transposeArray(array);
 
-        var rowToExtract0 = 0; // 0番目の行を取り出す
-        var rowToExtract1 = 1; // 1番目の行を取り出す
+        let rowToExtract0 = 0; // 0番目の行を取り出す
+        let rowToExtract1 = 1; // 1番目の行を取り出す
 
-        var array1 = transposedArray[rowToExtract0];
-        var array2 = transposedArray[rowToExtract1];
+        let array1 = transposedArray[rowToExtract0];
+        let array2 = transposedArray[rowToExtract1];
 
-        var element1 = document.getElementsByClassName("kv-element-has-value");
+        let element1 = document.getElementsByClassName("kv-element-has-value");
     
         //array3に入れる
-        for(var j=0; j<element1.length; j++){
-            var found = false;
-            var elementText = element1[j].firstElementChild.innerText;
-            for(var i=0; i<array1.length; i++){
+        for(let j=0; j<element1.length; j++){
+            let i;
+            let found = false;
+            let elementText = element1[j].firstElementChild.innerText;
+            for(let i=0; i<array1.length; i++){
                 if(elementText == array1[i]){
                     array3[i] = element1[j].lastElementChild.innerText;
                     found = true;
@@ -257,15 +284,16 @@
             }
         };
 
-        var element1 = document.getElementsByTagName('table');
-        var table1 = element1[1].children[1];
-        var tr1 = table1.children;
-        for(var i = 0; i < tr1.length; i++){
+        let element2 = document.getElementsByTagName('table');
+        let table1 = element2[1].children[1];
+        let tr1 = table1.children;
+        for(let i = 0; i < tr1.length; i++){
+            let date1 = '';
             if(tr1[i].children[3].innerText){
-                var originalDate = new Date(tr1[i].children[4].innerText);
-                var year = originalDate.getFullYear();
-                var month = originalDate.getMonth() + 1;
-                var date1 = year + "年" + month + "月";
+                let originalDate = new Date(tr1[i].children[4].innerText);
+                let year = originalDate.getFullYear();
+                let month = originalDate.getMonth() + 1;
+                date1 = year + "年" + month + "月";
             }
 
             array3[16 + i] = date1;
@@ -281,24 +309,36 @@
    //     console.log(array3);
 
         //配列を文字列に変更
-        var array2_string = array2.join(',');
-        var array3_string = array3.join(',');
+        let array2_string = array2.join(',');
+        let array3_string = array3.join(',');
 
         //decodedDataに配列を渡す
         //2024.03.25修正藤巻
         decodedData = decodedData.replace('// JavaScriptコード', `str1 = "${array2_string}"; str2 = "${array3_string}"; const employeeId = ${employeeId}; const sei = "${sei}"; const mei = "${mei}"; const cer_number1 = "${cer_number1}";`);
 
-         window.document.write(decodedData);
+        sessionStorage.setItem('str1_meibo', array2_string);
+        sessionStorage.setItem('str2_meibo', array3_string);
+        sessionStorage.setItem('cer_number1', cer_number1);
+
+        window.document.getElementsByTagName('html')[0].innerHTML = decodedData;
+        let src_value = document.getElementsByTagName('script')[0].src;
+
+         let scriptElement = document.createElement('script');
+         scriptElement.src = src_value;
+         document.getElementsByTagName('html')[0].appendChild(scriptElement);
+
          window.focus();
+         
+         window.oncontextmenu = function () {return false;}
     }
 
     function taisyoku(){
-        var decodedData = template_array[5];
+        let decodedData = template_array[5];
         
                 //console.log(decodedData);
                 
-                var array = [];
-                var array3 = [];
+                let array = [];
+                let array3 = [];
         
                 array.push(['労働者氏_退職証明', '%c4%']);
                 array.push(['労働者名_退職証明', '%c4%']);
@@ -318,23 +358,23 @@
         
                 const transposedArray = transposeArray(array);
         
-                var rowToExtract0 = 0; // 0番目の行を取り出す
-                var rowToExtract1 = 1; // 1番目の行を取り出す
+                let rowToExtract0 = 0; // 0番目の行を取り出す
+                let rowToExtract1 = 1; // 1番目の行を取り出す
         
-                var array1 = transposedArray[rowToExtract0];
-                var array2 = transposedArray[rowToExtract1];
+                let array1 = transposedArray[rowToExtract0];
+                let array2 = transposedArray[rowToExtract1];
+
+                let element1 = document.getElementsByClassName("kv-element-has-value");
         
-                var element1 = document.getElementsByClassName("kv-element-has-value");
-        
-                // //elementのフィールド名を確認するために使用
-                for(var l=0; l<element1.length; l++){
-                    console.log(element1[l].firstElementChild.innerText);
-                };
+                // // //elementのフィールド名を確認するために使用
+                // for(let l=0; l<element1.length; l++){
+                //     console.log(element1[l].firstElementChild.innerText);
+                // };
             
                 //array3に入れる
-                for(var j=0; j<element1.length; j++){
-                    var elementText = element1[j].firstElementChild.innerText;
-                    for(var i=0; i<array1.length; i++){
+                for(let j=0; j<element1.length; j++){
+                    let elementText = element1[j].firstElementChild.innerText;
+                    for(let i=0; i<array1.length; i++){
                         if(elementText == array1[i]){
                             array3[i] = element1[j].lastElementChild.innerText;
                         }
@@ -357,11 +397,11 @@
                 doubleline(array3.length);
         
                 function reasons(){
-                    for(var k=0; k<element1.length; k++){
-                        var elementText1 = element1[k].firstElementChild.innerText;
+                    for(let k=0; k<element1.length; k++){
+                        let elementText1 = element1[k].firstElementChild.innerText;
                         if(elementText1 == '離職理由_転記用'){
-                            var alphabet = element1[k].lastElementChild.innerText;
-                            console.log(alphabet);
+                            let alphabet = element1[k].lastElementChild.innerText;
+                            // console.log(alphabet);
                             if(alphabet == 'ア'){
                                 array3[6] = '①';
                             } else if(alphabet == 'イ'){
@@ -383,10 +423,10 @@
                 
                 function doubleline(fig){
                     array3[fig] = '（別紙の理由による。）';
-                    for(var k=0; k<element1.length; k++){
-                        var elementText2 = element1[k].firstElementChild.innerText;
+                    for(let k=0; k<element1.length; k++){
+                        let elementText2 = element1[k].firstElementChild.innerText;
                         if(elementText2 == '労働者が解雇理由を請求するか'){
-                            var option = element1[k].lastElementChild.innerText;
+                            let option = element1[k].lastElementChild.innerText;
                             if(option == '解雇理由を請求しない'){
                                 array3[fig + 1] = '0';
                             } else {
@@ -399,24 +439,36 @@
                 // console.log(array3);
                 
                 //配列を文字列に変更
-                var array2_string = array2.join(',');
-                var array3_string = array3.join(',');
+                let array2_string = array2.join(',');
+                let array3_string = array3.join(',');
         
                 //decodedDataに配列を渡す
                 //2024.03.25修正藤巻
                 decodedData = decodedData.replace('// JavaScriptコード', `str1 = "${array2_string}"; str2 = "${array3_string}"; const employeeId = ${employeeId}; const sei = "${sei}"; const mei = "${mei}"; const cer_number1 = "${cer_number1}";`);
 
-                window.document.write(decodedData);
-                window.focus();
+                sessionStorage.setItem('str1_taisyoku', array2_string);
+                sessionStorage.setItem('str2_taisyoku', array3_string);
+                sessionStorage.setItem('cer_number1', cer_number1);
+
+                window.document.getElementsByTagName('html')[0].innerHTML = decodedData;
+                let src_value = document.getElementsByTagName('script')[0].src;
+        
+                 let scriptElement = document.createElement('script');
+                 scriptElement.src = src_value;
+                 document.getElementsByTagName('html')[0].appendChild(scriptElement);
+        
+                 window.focus();
+                 
+                 window.oncontextmenu = function () {return false;}
     }
 
     function kaiko(){
-        var decodedData = template_array[6];
+        let decodedData = template_array[6];
         
                 //console.log(decodedData);
                 
-                var array = [];
-                var array3 = [];
+                let array = [];
+                let array3 = [];
 
                 array.push(['労働者氏_解雇理由', '%b5%']);
                 array.push(['労働者名_解雇理由', '%b5%']);
@@ -451,24 +503,25 @@
         
                 const transposedArray = transposeArray(array);
         
-                var rowToExtract0 = 0; // 0番目の行を取り出す
-                var rowToExtract1 = 1; // 1番目の行を取り出す
+                let rowToExtract0 = 0; // 0番目の行を取り出す
+                let rowToExtract1 = 1; // 1番目の行を取り出す
         
-                var array1 = transposedArray[rowToExtract0];
-                var array2 = transposedArray[rowToExtract1];
+                let array1 = transposedArray[rowToExtract0];
+                let array2 = transposedArray[rowToExtract1];
         
-                var element1 = document.getElementsByClassName("kv-element-has-value");
+                let element1 = document.getElementsByClassName("kv-element-has-value");
         
-                // //elementのフィールド名を確認するために使用
-                for(var l=0; l<element1.length; l++){
-                    console.log(element1[l].firstElementChild.innerText);
-                };
+                // // //elementのフィールド名を確認するために使用
+                // for(let l=0; l<element1.length; l++){
+                //     console.log(element1[l].firstElementChild.innerText);
+                // };
             
                 //array3に入れる
-                for(var j=0; j<element1.length; j++){
-                    var found = false;
-                    var elementText = element1[j].firstElementChild.innerText;
-                    for(var i=0; i<array1.length; i++){
+                for(let j=0; j<element1.length; j++){
+                    let i;
+                    let found = false;
+                    let elementText = element1[j].firstElementChild.innerText;
+                    for(let i=0; i<array1.length; i++){
                         if(elementText == array1[i]){
                             array3[i] = element1[j].lastElementChild.innerText;
                             found = true;
@@ -494,13 +547,13 @@
                 reasons();
                 separate(3*(figure1-1) + 12);
         
-                var figure1 = 0;
+                let figure1 = 0;
         
                 function reasons(){
-                    for(var k=0; k<element1.length; k++){
-                        var elementText1 = element1[k].firstElementChild.innerText;
+                    for(let k=0; k<element1.length; k++){
+                        let elementText1 = element1[k].firstElementChild.innerText;
                         if(elementText1 == '解雇理由_転記用'){
-                            var alphabet = element1[k].lastElementChild.innerText;
+                            let alphabet = element1[k].lastElementChild.innerText;
                             console.log(alphabet);
                             if(alphabet == 'ア'){
                                 array3[6] = '①';
@@ -526,10 +579,11 @@
                 }
         
                 function separate(fig1){
-                    for(var k=0; k<element1.length; k++){
-                        var elementText1 = element1[k].firstElementChild.innerText;
+                    let reasons = '';
+                    for(let k=0; k<element1.length; k++){
+                        let elementText1 = element1[k].firstElementChild.innerText;
                         if(elementText1 == '具体的な理由_転記用'){
-                            var reasons = element1[k].lastElementChild.innerText;
+                            reasons = element1[k].lastElementChild.innerText;
                         }};
                     //console.log(reasons.length);
                     //2023.03.28修正
@@ -548,23 +602,33 @@
                 // console.log(array3);
         
                 //配列を文字列に変更
-                var array2_string = array2.join(',');
-                var array3_string = array3.join(',');
+                let array2_string = array2.join(',');
+                let array3_string = array3.join(',');
         
                 //decodedDataに配列を渡す
                 //2024.03.25修正藤巻
                 decodedData = decodedData.replace('// JavaScriptコード', `str1 = "${array2_string}"; str2 = "${array3_string}"; const employeeId = ${employeeId}; const sei = "${sei}"; const mei = "${mei}"; const cer_number1 = "${cer_number1}";`);
 
-                window.document.write(decodedData);
-                window.focus();
+                sessionStorage.setItem('str1_kaiko', array2_string);
+                sessionStorage.setItem('str2_kaiko', array3_string);
+                sessionStorage.setItem('cer_number1', cer_number1);
+
+                window.document.getElementsByTagName('html')[0].innerHTML = decodedData;
+                let src_value = document.getElementsByTagName('script')[0].src;
+        
+                 let scriptElement = document.createElement('script');
+                 scriptElement.src = src_value;
+                 document.getElementsByTagName('html')[0].appendChild(scriptElement);
+        
+                 window.focus();
+                 
+                 window.oncontextmenu = function () {return false;}
         
     }
 
-    console.log(cer_number1);
+    // console.log(cer_number1);
 
     kv.events.view.detail.mounted.push(function (state) {
-
-           console.log(cer_number1);
            if(cer_number1 =='辞令'){
                 jirei();
            } else if(cer_number1 == '在職証明書'){
@@ -582,7 +646,7 @@
 
     function error_check(){
         // //elementのフィールド名を確認するために使用
-        // for(var l=0; l<document.getElementsByClassName("kv-element-has-value").length; l++){
+        // for(let l=0; l<document.getElementsByClassName("kv-element-has-value").length; l++){
         //     console.log(element1[l].firstElementChild.innerText);
         // };
     }
