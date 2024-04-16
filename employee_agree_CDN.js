@@ -1,4 +1,3 @@
-console.log('aaa');
 function getValue() {
     let LedgerKind = sessionStorage.getItem('LedgerKind');
     let str1;
@@ -47,7 +46,7 @@ function getValue() {
             decodedData = decodedData.replace(array2[i], array3[i]);
         };
 
-        document.style.display = 'show'
+        document.style.display = 'block';
         
         createPrintButton('print-button', '印刷はコチラ');
         createCloseButton('print-close', 'ウインドウを閉じる');
@@ -98,6 +97,9 @@ function getValue() {
             }
     }
     }
+    
+    let count = 0;
+    let intervalID = setInterval(getValue, 100);
     
     let count = 0;
     let intervalID = setInterval(getValue, 100);
