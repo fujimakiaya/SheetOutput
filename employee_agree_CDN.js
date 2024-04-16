@@ -1,5 +1,4 @@
-//memo
-
+console.log('aaa');
 function getValue() {
     let LedgerKind = sessionStorage.getItem('LedgerKind');
     let str1;
@@ -47,14 +46,8 @@ function getValue() {
         for(let i = 0; i < array2.length; i++){
             decodedData = decodedData.replace(array2[i], array3[i]);
         };
-        
-        document.body.innerHTML = decodedData;
-        let src_value = newTab.document.getElementsByTagName('script')[0].src;
 
-        let scriptElement = newTab.document.createElement('script');
-        scriptElement.src = src_value;
-        newTab.document.getElementsByTagName('html')[0].appendChild(scriptElement);
-    
+        document.style.display = 'show'
         
         createPrintButton('print-button', '印刷はコチラ');
         createCloseButton('print-close', 'ウインドウを閉じる');
