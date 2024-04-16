@@ -1,3 +1,5 @@
+//memo
+
 function getValue() {
     let LedgerKind = sessionStorage.getItem('LedgerKind');
     let str1;
@@ -5,9 +7,11 @@ function getValue() {
     if(LedgerKind == '雇用契約書'){
         str1 = sessionStorage.getItem('str1_koyou');
         str2 = sessionStorage.getItem('str2_koyou');
+        decodedData = sessionStorage.getItem('decodedData_koyou');
     } else if (LedgerKind == '労働条件通知書') {
         str1 = sessionStorage.getItem('str1_roudou');
         str2 = sessionStorage.getItem('str2_roudou');
+        decodedData = sessionStorage.getItem('decodedData_roudou');
     }
 
     if(str1.indexOf(',') > -1 && str2.indexOf(',') > -1){
@@ -36,12 +40,12 @@ function getValue() {
         kanma(58);
         kanma(61);
         
-        let htmlString = document.body.innerHTML;
+        // let htmlString = document.body.innerHTML;
         for(let i = 0; i < array2.length; i++){
-            htmlString = htmlString.replace(array2[i], array3[i]);
+            decodedData = decodedData.replace(array2[i], array3[i]);
         };
         
-        document.body.innerHTML = htmlString;
+        document.body.innerHTML = decodedData;
     
         
         createPrintButton('print-button', '印刷はコチラ');
