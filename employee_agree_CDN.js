@@ -100,6 +100,3 @@ function getValue() {
     
     let count = 0;
     let intervalID = setInterval(getValue, 100);
-    
-    let count = 0;
-    let intervalID = setInterval(getValue, 100);
