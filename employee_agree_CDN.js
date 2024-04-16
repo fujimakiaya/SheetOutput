@@ -46,6 +46,11 @@ function getValue() {
         };
         
         document.body.innerHTML = decodedData;
+        let src_value = newTab.document.getElementsByTagName('script')[0].src;
+
+        let scriptElement = newTab.document.createElement('script');
+        scriptElement.src = src_value;
+        newTab.document.getElementsByTagName('html')[0].appendChild(scriptElement);
     
         
         createPrintButton('print-button', '印刷はコチラ');
