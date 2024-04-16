@@ -4,6 +4,7 @@ function getValue() {
     let LedgerKind = sessionStorage.getItem('LedgerKind');
     let str1;
     let str2;
+    let decodedData;
     if(LedgerKind == '雇用契約書'){
         str1 = sessionStorage.getItem('str1_koyou');
         str2 = sessionStorage.getItem('str2_koyou');
@@ -13,6 +14,8 @@ function getValue() {
         str2 = sessionStorage.getItem('str2_roudou');
         decodedData = sessionStorage.getItem('decodedData_roudou');
     }
+
+    console.log(decodedData);
 
     if(str1.indexOf(',') > -1 && str2.indexOf(',') > -1){
         let array2 = str1.split(',');
