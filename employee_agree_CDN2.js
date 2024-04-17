@@ -1,4 +1,5 @@
 console.log('aaa');
+console.log('bbb');
 function getValue() {
     let LedgerKind = sessionStorage.getItem('LedgerKind');
     let str1;
